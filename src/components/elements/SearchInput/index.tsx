@@ -4,20 +4,25 @@ import { Subject } from "rxjs";
 import { useState } from "react";
 import { useGetSearchSuggestions } from "src/services/querys/getSearchSuggestions";
 import { IPrediction } from "src/interfaces/prediction";
+import { useSearchForm } from "@app/hooks/useSeachForm";
 
 const SearchInput = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState<IPrediction | null>({} as IPrediction);
-  const [inputValue, setInputValue] = useState("");
-  const [inputValue$] = useState(() => new Subject<string>());
+  const { searchInput, setSearchInput } = useSearchForm();
+  const [searchInput$] = useState(() => new Subject<string>());
 
-  const { data: options } = useGetSearchSuggestions(inputValue, inputValue);
+  const { data: options } = useGetSearchSuggestions(searchInput, searchInput);
 
-  inputValue$
+  const handleSetSearchInput = (value: string) => {
+    setSearchInput(value);
+  };
+
+  searchInput$
     .pipe(
       debounceTime(500),
       distinctUntilChanged(),
-      tap((e) => setInputValue(e))
+      tap((e) => handleSetSearchInput(e))
     )
     .subscribe();
 
@@ -38,7 +43,7 @@ const SearchInput = () => {
         setValue(newValue);
       }}
       onInputChange={(_, newInputValue) => {
-        inputValue$.next(newInputValue);
+        searchInput$.next(newInputValue);
       }}
       filterOptions={(x) => x}
       isOptionEqualToValue={(option, value) =>

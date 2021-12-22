@@ -25,6 +25,7 @@ export function useGetSearchSuggestions(
     () => getSearchSuggestions(input, config),
     {
       cacheTime: 0,
+      retry: false,
     }
   );
 

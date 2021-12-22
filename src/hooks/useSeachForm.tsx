@@ -14,7 +14,7 @@ type ISearchFormContext = {
 
 export const SearchFormContext = createContext({} as ISearchFormContext);
 
-export const GeolocationProvider = ({ children }: { children: ReactNode }) => {
+export const SearchFormProvider = ({ children }: { children: ReactNode }) => {
   const [searchInput, setSearchInput] = useState("");
 
   return (

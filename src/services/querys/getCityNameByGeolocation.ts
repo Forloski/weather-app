@@ -12,8 +12,6 @@ export async function getCityNameByGeolocation(
     config
   );
 
-  console.log(data);
-
   return data;
 }
 
