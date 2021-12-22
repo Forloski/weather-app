@@ -1,4 +1,4 @@
-import { useGeolocationContext } from "@app/hooks/useGeolocation";
+import { useGeolocation } from "@app/hooks/useGeolocation";
 import { useGetCityNameByGeolocation } from "@app/services/querys/getCityNameByGeolocation";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const MyCityButton = () => {
   const router = useRouter();
-  const { latitude, longitude } = useGeolocationContext();
+  const { latitude, longitude } = useGeolocation();
   const cityName = useGetCityNameByGeolocation(
     `cityNameFrom${latitude}${longitude}`,
     latitude,

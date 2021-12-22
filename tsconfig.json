@@ -19,7 +19,7 @@
       "@app/config/*": ["src/config/*"],
       "@app/components/*": ["src/components/*"],
       "@app/hooks/*": ["src/hooks/*"],
-      "@app/interface/*": ["interface/*"],
+      "@app/interfaces/*": ["src/interfaces/*"],
       "@app/pages/*": ["src/pages/*"],
       "@app/public/*": ["public/*"],
       "@app/services/*": ["src/services/*"]

@@ -1,4 +1,3 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
-const config: AxiosRequestConfig = {};
-export const httpInstance = axios.create(config);
+export const httpInstance = axios.create({});

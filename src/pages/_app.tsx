@@ -1,5 +1,4 @@
 import type { AppProps } from "next/app";
-import { GeolocationProvider } from "../hooks/useGeolocation";
 import { CssBaseline } from "@mui/material";
 import { Hydrate, QueryClientProvider } from "react-query";
 import { queryClient } from "src/services/querys/queryClient";
@@ -11,11 +10,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <CssBaseline>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <GeolocationProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </GeolocationProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
           <ReactQueryDevtools initialIsOpen={false} />
         </Hydrate>
       </QueryClientProvider>

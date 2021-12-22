@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useGetSearchSuggestions } from "src/services/querys/getSearchSuggestions";
 import { IPrediction } from "src/interfaces/prediction";
 
-const SearchBar = () => {
+const SearchInput = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState<IPrediction | null>({} as IPrediction);
   const [inputValue, setInputValue] = useState("");
@@ -60,4 +60,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default SearchInput;

@@ -5,7 +5,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { IGeolocation } from "../interfaces/geolocation";
 
 type IGeolocationContext = {
   latitude: number;
@@ -21,15 +20,15 @@ export const GeolocationProvider = ({ children }: { children: ReactNode }) => {
   const [geolocationStatus, setGeolocationStatus] = useState("");
 
   const getGeoLocation = () => {
-    setGeolocationStatus("Locating...");
+    setGeolocationStatus("Localizando...");
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        setGeolocationStatus("Success");
+        setGeolocationStatus("Sucesso");
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
       },
       () => {
-        setGeolocationStatus("Unable to retrieve your location");
+        setGeolocationStatus("Não foi possivel encontrar sua localização");
       }
     );
   };
@@ -37,7 +36,7 @@ export const GeolocationProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     navigator.geolocation
       ? getGeoLocation()
-      : setGeolocationStatus("Geolocation is not supported by your browser");
+      : setGeolocationStatus("Geolocalização não é suportada pelo seu browser");
   }, []);
 
   return (
@@ -49,7 +48,7 @@ export const GeolocationProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export function useGeolocationContext() {
+export function useGeolocation() {
   const context = useContext(GeolocationContext);
   return context;
 }

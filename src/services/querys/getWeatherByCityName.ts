@@ -3,21 +3,21 @@ import { AxiosRequestConfig } from "axios";
 import { httpInstance } from "../http/httpInstance";
 import { IWeather } from "src/interfaces/weather";
 
-export async function getWeatherByName(
-  name: string,
+export async function getWeatherByCityName(
+  cityName: string,
   config?: AxiosRequestConfig
 ): Promise<IWeather> {
   const { data } = await httpInstance.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=78727b25f982d564499a59ec95821630&lang=pt&units=metric`,
+    `api/weather-by-city-name?name=${cityName}`,
     config
   );
 
   return data;
 }
 
-export function useGetWeatherByName(
+export function useWeatherByCityName(
   queryKey: string,
-  name: string,
+  cityName: string,
   options?: Omit<
     UseQueryOptions<IWeather, unknown, IWeather, string>,
     "queryKey" | "queryFn"
@@ -26,7 +26,7 @@ export function useGetWeatherByName(
 ): IWeather | undefined {
   const { data } = useQuery(
     queryKey,
-    () => getWeatherByName(name, config),
+    () => getWeatherByCityName(cityName, config),
     options
   );
 

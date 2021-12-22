@@ -1,12 +1,12 @@
 import { useGetWeatherByGeolocation } from "@app/services/querys/getWeatherByGeolocation";
 import type { NextPage } from "next";
-import { useGeolocationContext } from "../hooks/useGeolocation";
+import { GeolocationProvider, useGeolocation } from "../hooks/useGeolocation";
 import SearchBar from "src/components/elements/SearchInput";
 import { useGetCityNameByGeolocation } from "@app/services/querys/getCityNameByGeolocation";
 import MyCityButton from "@app/components/elements/MyCityButton";
 
 const Home: NextPage = () => {
-  const { latitude, longitude, geolocationStatus } = useGeolocationContext();
+  const { latitude, longitude, geolocationStatus } = useGeolocation();
   const cityName = useGetCityNameByGeolocation(
     `cityNameFrom${latitude}${longitude}`,
     latitude,
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
   );
 
   return (
-    <>
+    <GeolocationProvider>
       <div>
         <input type="text"></input>
         <h1>Coordinates</h1>
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
         <SearchBar></SearchBar>
         <MyCityButton></MyCityButton>
       </div>
-    </>
+    </GeolocationProvider>
   );
 };
 

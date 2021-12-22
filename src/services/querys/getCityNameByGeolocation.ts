@@ -8,15 +8,13 @@ export async function getCityNameByGeolocation(
   config?: AxiosRequestConfig
 ): Promise<string> {
   const { data } = await httpInstance.get(
-    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&sensor=true&key=AIzaSyAwm-Mf7vQK2z4NmYVF2n9Hs-VIjLl5oG0`,
+    `api/city-name-by-geolocation?longitude=${longitude}&latitude=${latitude}`,
     config
   );
 
-  return data.plus_code.compound_code
-    .split(" ")
-    .slice(1)
-    .join("")
-    .toLowerCase();
+  console.log(data);
+
+  return data;
 }
 
 export function useGetCityNameByGeolocation(

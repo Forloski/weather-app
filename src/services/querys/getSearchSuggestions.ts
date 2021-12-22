@@ -8,11 +8,11 @@ export async function getSearchSuggestions(
   config?: AxiosRequestConfig
 ): Promise<IPrediction[]> {
   const { data } = await httpInstance.get(
-    `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=%28cities%29&key=AIzaSyAwm-Mf7vQK2z4NmYVF2n9Hs-VIjLl5oG0`,
+    `/api/search-suggestions?input=${input}`,
     config
   );
 
-  return data.predictions;
+  return data;
 }
 
 export function useGetSearchSuggestions(

@@ -1,4 +1,4 @@
-import { getWeatherByName } from "@app/services/querys/getWeatherByName";
+import { getWeatherByCityName } from "@app/services/querys/getWeatherByCityName";
 import { GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { dehydrate, QueryClient } from "react-query";
@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IParams;
   const queryClientt = new QueryClient();
 
-  await queryClientt.prefetchQuery(id, () => getWeatherByName(id));
+  await queryClientt.prefetchQuery(id, () => getWeatherByCityName(id));
 
   return {
     props: {
