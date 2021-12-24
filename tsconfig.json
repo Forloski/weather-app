@@ -16,13 +16,14 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@app/config/*": ["src/config/*"],
-      "@app/components/*": ["src/components/*"],
-      "@app/hooks/*": ["src/hooks/*"],
-      "@app/interfaces/*": ["src/interfaces/*"],
-      "@app/pages/*": ["src/pages/*"],
-      "@app/public/*": ["public/*"],
-      "@app/services/*": ["src/services/*"]
+      "@/*": ["src/*"],
+      "@/config/*": ["src/config/*"],
+      "@/components/*": ["src/components/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/interfaces/*": ["src/interfaces/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/public/*": ["public/*"],
+      "@/services/*": ["src/services/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

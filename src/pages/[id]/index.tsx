@@ -1,18 +1,11 @@
-import { getWeatherByCityName } from "@app/services/querys/getWeatherByCityName";
 import { GetStaticProps, NextPage } from "next";
-import { ParsedUrlQuery } from "querystring";
 import { dehydrate, QueryClient } from "react-query";
-
-interface IParams extends ParsedUrlQuery {
-  id: string;
-}
+import { fetchOpenWeatherByCityName } from "@/pages/api/weather-by-city-name";
+import { IIdUrlQuery } from "@/interfaces/idUrlQuery";
+import { CityWeatherPage } from "@/components/pages";
 
 const CityWeather: NextPage = () => {
-  return (
-    <>
-      <p>cityWeatherPage</p>
-    </>
-  );
+  return <CityWeatherPage />;
 };
 
 export const getStaticPaths = async () => {
@@ -20,14 +13,25 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { id } = context.params as IParams;
-  const queryClientt = new QueryClient();
+  const { id } = context.params as IIdUrlQuery;
+  const queryClient = new QueryClient();
 
-  await queryClientt.prefetchQuery(id, () => getWeatherByCityName(id));
+  await queryClient.prefetchQuery(id, () => fetchOpenWeatherByCityName(id));
+
+  const queryState = queryClient.getQueryState(id);
+
+  if (!queryState || queryState.status === "error") {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/404",
+      },
+    };
+  }
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClientt),
+      dehydratedState: dehydrate(queryClient),
     },
   };
 };

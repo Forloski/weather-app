@@ -1,7 +1,7 @@
 import { useQuery, UseQueryOptions } from "react-query";
 import { AxiosRequestConfig } from "axios";
-import { httpInstance } from "../http/httpInstance";
-import { IWeather } from "src/interfaces/weather";
+import { httpInstance } from "@/services/http/httpInstance";
+import { IWeather } from "@/interfaces/weather";
 
 export async function getWeatherByCityName(
   cityName: string,

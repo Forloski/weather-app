@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import { IWeather } from "@app/interfaces/weather";
+import { IWeather } from "@/interfaces/weather";
 
 export default async function handler(
   req: NextApiRequest,

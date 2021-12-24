@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 
 type Props = {
-  children: string;
+  children: string | number;
 };
 
 const DefaultTypography = (props: Props) => {

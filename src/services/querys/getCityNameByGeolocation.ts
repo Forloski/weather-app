@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from "react-query";
 import { AxiosRequestConfig } from "axios";
-import { httpInstance } from "../http/httpInstance";
+import { httpInstance } from "@/services/http/httpInstance";
 
 export async function getCityNameByGeolocation(
   latitude: number,
@@ -15,7 +15,7 @@ export async function getCityNameByGeolocation(
   return data;
 }
 
-export function useGetCityNameByGeolocation(
+export function useCityNameByGeolocation(
   queryKey: string,
   latitude: number,
   longitude: number,

@@ -6,7 +6,7 @@ type Props = {
   children: JSX.Element;
 };
 
-const Layout = ({ children }: Props) => {
+const DefaultLayout = ({ children }: Props) => {
   const isFetching = useIsFetching();
 
   return (
@@ -17,4 +17,4 @@ const Layout = ({ children }: Props) => {
   );
 };
 
-export default Layout;
+export default DefaultLayout;

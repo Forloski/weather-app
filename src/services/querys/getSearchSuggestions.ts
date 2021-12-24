@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { AxiosRequestConfig } from "axios";
-import { httpInstance } from "../http/httpInstance";
-import { IPrediction } from "src/interfaces/prediction";
+import { httpInstance } from "@/services/http/httpInstance";
+import { IPrediction } from "@/interfaces/prediction";
 
 export async function getSearchSuggestions(
   input: string | null = "",
@@ -15,7 +15,7 @@ export async function getSearchSuggestions(
   return data;
 }
 
-export function useGetSearchSuggestions(
+export function useSearchSuggestions(
   queryKey: string,
   input: string | null,
   config?: AxiosRequestConfig
@@ -25,7 +25,6 @@ export function useGetSearchSuggestions(
     () => getSearchSuggestions(input, config),
     {
       cacheTime: 0,
-      retry: false,
     }
   );
 

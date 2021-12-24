@@ -2,9 +2,9 @@ import { Autocomplete, TextField } from "@mui/material";
 import { debounceTime, distinctUntilChanged, tap } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { useState } from "react";
-import { useGetSearchSuggestions } from "src/services/querys/getSearchSuggestions";
-import { IPrediction } from "src/interfaces/prediction";
-import { useSearchForm } from "@app/hooks/useSeachForm";
+import { useSearchSuggestions } from "@/services/querys/getSearchSuggestions";
+import { IPrediction } from "@/interfaces/prediction";
+import { useSearchForm } from "@/hooks/useSearchForm";
 
 const SearchInput = () => {
   const [open, setOpen] = useState(false);
@@ -12,7 +12,7 @@ const SearchInput = () => {
   const { searchInput, setSearchInput } = useSearchForm();
   const [searchInput$] = useState(() => new Subject<string>());
 
-  const { data: options } = useGetSearchSuggestions(searchInput, searchInput);
+  const { data: options } = useSearchSuggestions(searchInput, searchInput);
 
   const handleSetSearchInput = (value: string) => {
     setSearchInput(value);

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import { IPrediction } from "@app/interfaces/prediction";
+import { IPrediction } from "@/interfaces/prediction";
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,13 +14,14 @@ export default async function handler(
 
   const httpInstance = axios.create({});
 
-  const { data } = await httpInstance.get(
-    `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=%28cities%29&key=${process.env.GOOGLE_MAPS_API_KEY}&language=pt_BR`
-  );
+  let response;
 
-  if (!data) {
+  try {
+    response = await httpInstance.get(
+      `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=%28cities%29&key=${process.env.GOOGLE_MAPS_API_KEY}&language=pt_BR`
+    );
+    res.status(200).json(response.data.predictions);
+  } catch (e) {
     res.status(404);
   }
-
-  res.status(200).json(data.predictions);
 }

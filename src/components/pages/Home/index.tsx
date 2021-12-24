@@ -1,6 +1,6 @@
-import DefaultTypography from "@app/components/elements/DefaultTypography";
-import SearchForm from "@app/components/modules/SearchForm";
-import { SearchFormProvider } from "@app/hooks/useSeachForm";
+import DefaultTypography from "@/components/elements/DefaultTypography";
+import SearchForm from "@/components/modules/SearchForm";
+import { SearchFormProvider } from "@/hooks/useSearchForm";
 
 const HomePage = () => {
   return (

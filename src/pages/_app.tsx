@@ -1,9 +1,9 @@
 import type { AppProps } from "next/app";
 import { CssBaseline } from "@mui/material";
 import { Hydrate, QueryClientProvider } from "react-query";
-import { queryClient } from "src/services/querys/queryClient";
 import { ReactQueryDevtools } from "react-query/devtools";
-import Layout from "src/components/layout";
+import { queryClient } from "@/services/querys/queryClient";
+import Layout from "@/components/layouts/DefaultLayout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

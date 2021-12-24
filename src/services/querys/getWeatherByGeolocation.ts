@@ -1,7 +1,7 @@
 import { useQuery, UseQueryOptions } from "react-query";
 import { AxiosRequestConfig } from "axios";
-import { httpInstance } from "../http/httpInstance";
-import { IWeather } from "@app/interfaces/weather";
+import { httpInstance } from "@/services/http/httpInstance";
+import { IWeather } from "@/interfaces/weather";
 
 export async function getWeatherByGeolocation(
   latitude: number,
@@ -16,7 +16,7 @@ export async function getWeatherByGeolocation(
   return data;
 }
 
-export function useGetWeatherByGeolocation(
+export function useWeatherByGeolocation(
   queryKey: string,
   latitude: number,
   longitude: number,
