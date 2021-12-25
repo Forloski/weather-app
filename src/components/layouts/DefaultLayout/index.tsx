@@ -10,10 +10,10 @@ const DefaultLayout = ({ children }: Props) => {
   const isFetching = useIsFetching();
 
   return (
-    <Box>
+    <S.MainContainer>
       {!!isFetching && <S.QueryProgress />}
       {children}
-    </Box>
+    </S.MainContainer>
   );
 };
 

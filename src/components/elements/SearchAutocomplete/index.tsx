@@ -6,7 +6,7 @@ import { useSearchSuggestions } from "@/services/querys/getSearchSuggestions";
 import { IPrediction } from "@/interfaces/prediction";
 import { useSearchForm } from "@/hooks/useSearchForm";
 
-const SearchInput = () => {
+const SearchAutocomplete = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState<IPrediction | null>({} as IPrediction);
   const { searchInput, setSearchInput } = useSearchForm();
@@ -29,7 +29,6 @@ const SearchInput = () => {
   return (
     <Autocomplete
       id="input-search"
-      sx={{ width: 300 }}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -54,6 +53,7 @@ const SearchInput = () => {
       renderInput={(params) => (
         <TextField
           {...params}
+          fullWidth
           label="Procure por uma cidade..."
           InputProps={{
             ...params.InputProps,
@@ -65,4 +65,4 @@ const SearchInput = () => {
   );
 };
 
-export default SearchInput;
+export default SearchAutocomplete;

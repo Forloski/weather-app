@@ -1,8 +1,8 @@
 import { useCityNameByGeolocation } from "@/services/querys/getCityNameByGeolocation";
 import { useGeolocation } from "@/hooks/useGeolocation";
-import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import * as S from "./styles";
 
 const MyCityButton = () => {
   const router = useRouter();
@@ -25,14 +25,15 @@ const MyCityButton = () => {
   };
 
   return (
-    <Button
+    <S.CityButton
       id="my-city"
       variant="outlined"
       onClick={handleClick}
       disabled={!!!cityName}
+      fullWidth
     >
       Minha Cidade
-    </Button>
+    </S.CityButton>
   );
 };
 

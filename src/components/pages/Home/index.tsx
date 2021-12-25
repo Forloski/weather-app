@@ -1,12 +1,15 @@
-import DefaultTypography from "@/components/elements/DefaultTypography";
 import SearchForm from "@/components/modules/SearchForm";
 import { SearchFormProvider } from "@/hooks/useSearchForm";
+import { Box } from "@mui/material";
+import * as S from "./styles";
 
 const HomePage = () => {
   return (
     <SearchFormProvider>
-      <DefaultTypography>Weather App</DefaultTypography>
-      <SearchForm />
+      <Box pb={15}>
+        <S.TitleTypography variant="h1">Weather</S.TitleTypography>
+        <SearchForm />
+      </Box>
     </SearchFormProvider>
   );
 };

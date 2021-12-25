@@ -2,7 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import { IWeather } from "@/interfaces/weather";
 
-export const fetchOpenWeatherByCityName = async (name: string | string[]) => {
+export const fetchOpenWeatherByCityName = async (
+  name: string | string[]
+): Promise<IWeather> => {
   const httpInstance = axios.create({});
 
   const { data } = await httpInstance.get(
