@@ -1,7 +1,6 @@
 import { MyCityButton, SearchAutocomplete } from "@/components/elements/";
 import { GeolocationProvider } from "@/hooks/useGeolocation";
 import { useSearchForm } from "@/hooks/useSearchForm";
-import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { FormEvent } from "react";
 import * as S from "./styles";

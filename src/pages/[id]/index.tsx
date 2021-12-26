@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 import { dehydrate, QueryClient } from "react-query";
-import { fetchOpenWeatherByCityName } from "@/pages/api/weather-by-city-name";
+import { fetchWeatherByCityName } from "@/pages/api/weather-by-city-name";
 import { IIdUrlQuery } from "@/interfaces/idUrlQuery";
 import { CityWeatherPage } from "@/components/pages";
 
@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IIdUrlQuery;
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(id, () => fetchOpenWeatherByCityName(id));
+  await queryClient.prefetchQuery(id, () => fetchWeatherByCityName(id));
 
   const queryState = queryClient.getQueryState(id);
 

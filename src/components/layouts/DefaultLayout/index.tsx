@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { useIsFetching } from "react-query";
 import * as S from "./styles";
 

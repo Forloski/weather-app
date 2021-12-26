@@ -24,7 +24,7 @@ export default async function handler(
   const response = data.plus_code.compound_code
     .split(" ")
     .slice(1)
-    .join("")
+    .join("%20")
     .toLowerCase();
 
   res.status(200).json(response);
