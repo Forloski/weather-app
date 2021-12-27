@@ -8,35 +8,31 @@ export const fetchWeatherByCityName = async (
 ): Promise<IWeather | unknown> => {
   const httpInstance = axios.create({});
 
-  try {
-    const current = httpInstance.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${process.env.OPEN_WEATHER_API_KEY}&lang=pt&units=metric`
-    );
+  const current = httpInstance.get(
+    `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${process.env.OPEN_WEATHER_API_KEY}&lang=pt&units=metric`
+  );
 
-    const forecast = httpInstance.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=navegantes&appid=78727b25f982d564499a59ec95821630&lang=pt&units=metric`
-    );
+  const forecast = httpInstance.get(
+    `https://api.openweathermap.org/data/2.5/forecast?q=navegantes&appid=78727b25f982d564499a59ec95821630&lang=pt&units=metric`
+  );
 
-    const data: IWeather = {
-      current: (await current).data,
-      forecast: (await forecast).data,
-    };
+  const data: IWeather = {
+    current: (await current).data,
+    forecast: (await forecast).data,
+  };
 
-    data.forecast.list = data.forecast.list.map((hourForecast) => {
-      const dateTime = DateTime.fromSeconds(hourForecast.dt).setLocale("pt-BR");
+  data.forecast.list = data.forecast.list.map((hourForecast) => {
+    const dateTime = DateTime.fromSeconds(hourForecast.dt).setLocale("pt-BR");
 
-      hourForecast.mont_txt = dateTime.monthShort.replace(".", "");
-      hourForecast.day_txt = dateTime.day;
-      hourForecast.weekDay_txt = dateTime.weekdayShort.replace(".", "");
-      hourForecast.hour_txt = dateTime.hour;
+    hourForecast.mont_txt = dateTime.monthShort.replace(".", "");
+    hourForecast.day_txt = dateTime.day;
+    hourForecast.weekDay_txt = dateTime.weekdayShort.replace(".", "");
+    hourForecast.hour_txt = dateTime.hour;
 
-      return hourForecast;
-    });
+    return hourForecast;
+  });
 
-    return data;
-  } catch (err) {
-    return err;
-  }
+  return data;
 };
 
 export default async function handler(
