@@ -18,7 +18,7 @@ export default async function handler(
 
   try {
     response = await httpInstance.get(
-      `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=%28cities%29&key=${process.env.GOOGLE_MAPS_API_KEY}&language=pt_BR`
+      `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=%28cities%29&key=${process.env.GOOGLE_MAPS_API_KEY}&language=pt-BR`
     );
     res.status(200).json(response.data.predictions);
   } catch (e) {

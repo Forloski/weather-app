@@ -5,7 +5,7 @@
 Fazer clone do projeto, entrar na pasta que foi clonado e executar
 
 ```sh
-npm install
+yarn install
 ```
 
 Copie o **_.env_** fornecido para a raiz do projeto.
@@ -15,19 +15,19 @@ Copie o **_.env_** fornecido para a raiz do projeto.
 Para iniciar em modo de desenvolvimento
 
 ```sh
-npm run dev
+yarn dev
 ```
 
 Para fazer build do projeto
 
 ```sh
-npm run build
+yarn build
 ```
 
 Para executar em modo de produção
 
 ```sh
-npm run start
+yarn start
 ```
 
 ## Tecnologias Utilizadas
@@ -49,6 +49,12 @@ Um segundo ponto é o layout da página que mostra a previsão do tempo para a c
 
 O backend utilizado foi o fornecido pelo NextJS, que eu particularmente não gostei, estou acostumado a utilizar o [NestJS](https://nestjs.com/) que é mais focado em OOP e consegue utilizar as funcionalidades do TS de maneira mais eficiente.
 
+## Error Conhecidos
+
+O OpenWeather disponiviliza uma lista com todas as cidades disponiveis e seus respectivos códigos, porém o arquivo tem 100mb de tamanho, o que torna sua utilização dependente de um backend completo com banco de dados e outras funcionalidades, o que adicionaria ainda mais ao tempo do projeto e acho que fugiria um pouco do escopo.
+
+Uma alternativa que encontrei para poder ainda ter o a funcionalidade de procurar por qualquer cidade do mundo foi utilizar a API do Google Maps. Porém nem todos os dados retornados do autocomplete são compativeis com a API do OpenWeather, assim levando a algumas cidades a gerarem erro nas requests de previsão.
+
 ## Melhorias
 
 Durante as próximas semanas/meses devo adicionar algumas funcionalidades que não consegui nessa versão para utilizar esse projeto num portfólio.
@@ -58,7 +64,9 @@ Durante as próximas semanas/meses devo adicionar algumas funcionalidades que n�
 - Alterar a maneira que a permissão para obter geolocalização é requerida.
 - Tratar os dados recebidos para obter médias diárias das previsões.
 - Alterar o layout da página de previsão do tempo das cidades.
--
+- Criar placeHolders para componentes que ainda não carregaram.
+- Criar loading para feedback quando o usuario clica em 'Ver Previsão' e 'Minha Cidade'.
+- Criar um back-end completo para busca de cidade utilizando o ID que o OpenWeather fornece.
 
 ## Considerações
 
