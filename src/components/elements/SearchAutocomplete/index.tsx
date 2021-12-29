@@ -5,8 +5,10 @@ import { useState } from "react";
 import { useSearchSuggestions } from "@/services/querys/getSearchSuggestions";
 import { IPrediction } from "@/interfaces/prediction";
 import { useSearchForm } from "@/hooks/useSearchForm";
+import { useRouter } from "next/router";
 
 const SearchAutocomplete = () => {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState<IPrediction | null>({} as IPrediction);
   const { searchInput, setSearchInput } = useSearchForm();
@@ -15,6 +17,16 @@ const SearchAutocomplete = () => {
   const { data: options } = useSearchSuggestions(searchInput, searchInput);
 
   const handleSetSearchInput = (value: string) => {
+    const cityName = value
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .split(",")[0]
+      .split("-")[0];
+
+    console.log(cityName, "cityName");
+
+    router.prefetch(`/${cityName}`);
+
     setSearchInput(value);
   };
 
