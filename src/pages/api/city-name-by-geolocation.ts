@@ -21,11 +21,18 @@ export default async function handler(
     res.status(404);
   }
 
-  const response = data.plus_code.compound_code
+  const cityStateCountry = data.plus_code.compound_code
     .split(" ")
     .slice(1)
     .join("%20")
     .toLowerCase();
+
+  const normalizedCity = cityStateCountry
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .split(",")[0];
+
+  const response = normalizedCity.replaceAll(" ", "%20");
 
   res.status(200).json(response);
 }

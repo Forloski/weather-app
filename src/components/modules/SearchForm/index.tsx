@@ -11,7 +11,14 @@ const SearchForm = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    router.push(`/${searchInput}`);
+
+    const cityName = searchInput
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .split(",")[0]
+      .split("-")[0];
+
+    router.push(`/${cityName}`);
   };
 
   return (

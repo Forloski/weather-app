@@ -66,7 +66,7 @@ Durante as próximas semanas/meses devo adicionar algumas funcionalidades que n�
 - Alterar o layout da página de previsão do tempo das cidades.
 - Criar placeHolders para componentes que ainda não carregaram.
 - Criar loading para feedback quando o usuario clica em 'Ver Previsão' e 'Minha Cidade'.
-- Criar um back-end completo para busca de cidade utilizando o ID que o OpenWeather fornece.
+- Criar um back-end completo para busca de cidades utilizando o ID que o OpenWeather fornece.
 
 ## Considerações
 
