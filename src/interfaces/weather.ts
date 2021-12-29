@@ -27,10 +27,11 @@ interface ICurrentWeather {
   cod: number;
 }
 
-interface IForecastWeather {
+export interface IForecastWeather {
   cod: string;
   message: number;
   cnt: number;
+  uniqueDates: string[];
   list: {
     dt: 1640530800;
     main: {
@@ -66,10 +67,10 @@ interface IForecastWeather {
       pod: string;
     };
     dt_txt: string;
-    hour_txt?: number;
-    weekDay_txt?: string;
-    mont_txt?: string;
-    day_txt?: number;
+    hour_txt: number;
+    weekDay_txt: string;
+    mont_txt: string;
+    day_txt: number;
   }[];
   city: {
     id: number;

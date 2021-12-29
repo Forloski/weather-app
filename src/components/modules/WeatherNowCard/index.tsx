@@ -14,7 +14,7 @@ const WeatherNowCard = () => {
   }
 
   return (
-    <Box mt={12}>
+    <Box mt={10}>
       <Typography align="center" variant="h4">
         {weather.current.name}
       </Typography>

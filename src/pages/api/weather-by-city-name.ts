@@ -1,27 +1,30 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import { IWeather } from "@/interfaces/weather";
+import { IForecastWeather, IWeather } from "@/interfaces/weather";
 import { DateTime } from "luxon";
 
-export const fetchWeatherByCityName = async (
-  name: string | string[]
-): Promise<IWeather | unknown> => {
-  const httpInstance = axios.create({});
+const getHttpInstance = () => {
+  return axios.create({});
+};
 
-  const current = httpInstance.get(
+const getCurrentWeather = async (name: string) => {
+  const httpInstance = getHttpInstance();
+
+  return httpInstance.get(
     `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${process.env.OPEN_WEATHER_API_KEY}&lang=pt&units=metric`
   );
+};
 
-  const forecast = httpInstance.get(
-    `https://api.openweathermap.org/data/2.5/forecast?q=navegantes&appid=78727b25f982d564499a59ec95821630&lang=pt&units=metric`
+const getForecastWeather = async (name: string) => {
+  const httpInstance = getHttpInstance();
+
+  return httpInstance.get(
+    `https://api.openweathermap.org/data/2.5/forecast?q=${name}&appid=${process.env.OPEN_WEATHER_API_KEY}&lang=pt&units=metric`
   );
+};
 
-  const data: IWeather = {
-    current: (await current).data,
-    forecast: (await forecast).data,
-  };
-
-  data.forecast.list = data.forecast.list.map((hourForecast) => {
+const setDateTxtOnForecast = (forecast: IForecastWeather) => {
+  forecast.list = forecast.list.map((hourForecast) => {
     const dateTime = DateTime.fromSeconds(hourForecast.dt).setLocale("pt-BR");
 
     hourForecast.mont_txt = dateTime.monthShort.replace(".", "");
@@ -31,6 +34,35 @@ export const fetchWeatherByCityName = async (
 
     return hourForecast;
   });
+
+  return forecast;
+};
+
+const setUniqueDaysOnForecast = (forecast: IForecastWeather) => {
+  const uniqueDates = new Set<string>();
+
+  forecast.list.forEach((forecast) => {
+    uniqueDates.add(`${forecast.mont_txt}/${forecast.day_txt}`);
+  });
+
+  forecast.uniqueDates = Array.from(uniqueDates);
+
+  return forecast;
+};
+
+export const fetchWeatherByCityName = async (
+  name: string
+): Promise<IWeather | unknown> => {
+  const current = getCurrentWeather(name);
+  const forecast = getForecastWeather(name);
+
+  const data: IWeather = {
+    current: (await current).data,
+    forecast: (await forecast).data,
+  };
+
+  data.forecast = setDateTxtOnForecast(data.forecast);
+  data.forecast = setUniqueDaysOnForecast(data.forecast);
 
   return data;
 };
@@ -45,7 +77,7 @@ export default async function handler(
     res.status(400);
   }
 
-  const data = await fetchWeatherByCityName(name);
+  const data = await fetchWeatherByCityName(name as string);
 
   if (!data) {
     res.status(404);

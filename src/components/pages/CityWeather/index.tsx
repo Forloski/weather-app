@@ -1,9 +1,10 @@
-import { WeatherNowCard, WeatherForecastCard } from "@/components/modules/";
+import { WeatherNowCard } from "@/components/modules/";
 import * as S from "./styles";
 import HomeIcon from "@mui/icons-material/Home";
 import Link from "next/link";
 import { useBackdrop } from "@/hooks/useBackdrop";
 import { useEffect } from "react";
+import WeatherForecastTabs from "@/components/modules/WeatherForecastTabs";
 
 const CityWeatherPage = () => {
   const { setBackdropStatus } = useBackdrop();
@@ -20,7 +21,7 @@ const CityWeatherPage = () => {
         </S.HomeFab>
       </Link>
       <WeatherNowCard />
-      <WeatherForecastCard />
+      <WeatherForecastTabs />
     </>
   );
 };
