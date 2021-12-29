@@ -6,11 +6,11 @@ import Link from "next/link";
 const CityWeatherPage = () => {
   return (
     <>
-      <S.HomeFab color={"primary"}>
-        <Link href="/" passHref>
+      <Link href="/" passHref>
+        <S.HomeFab color={"primary"}>
           <HomeIcon />
-        </Link>
-      </S.HomeFab>
+        </S.HomeFab>
+      </Link>
       <WeatherNowCard />
       <WeatherForecastCard />
     </>
