@@ -23,8 +23,6 @@ const SearchAutocomplete = () => {
       .split(",")[0]
       .split("-")[0];
 
-    console.log(cityName, "cityName");
-
     router.prefetch(`/${cityName}`);
 
     setSearchInput(value);
