@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import { normalizeCityNames } from "utils/normalizeCityNames";
 
 export default async function handler(
   req: NextApiRequest,
@@ -27,10 +28,7 @@ export default async function handler(
     .join("%20")
     .toLowerCase();
 
-  const normalizedCity = cityStateCountry
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .split(",")[0];
+  const normalizedCity = normalizeCityNames(cityStateCountry);
 
   const response = encodeURIComponent(normalizedCity.trim());
 

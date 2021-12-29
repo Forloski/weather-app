@@ -3,6 +3,7 @@ import { GeolocationProvider } from "@/hooks/useGeolocation";
 import { useSearchForm } from "@/hooks/useSearchForm";
 import { useRouter } from "next/router";
 import { FormEvent } from "react";
+import { normalizeCityNames } from "utils/normalizeCityNames";
 import * as S from "./styles";
 
 const SearchForm = () => {
@@ -12,11 +13,7 @@ const SearchForm = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    const cityName = searchInput
-      .normalize("NFD")
-      .replace(/\p{Diacritic}/gu, "")
-      .split(",")[0]
-      .split("-")[0];
+    const cityName = normalizeCityNames(searchInput);
 
     router.push(`/${cityName}`);
   };

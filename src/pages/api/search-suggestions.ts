@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import { IPrediction } from "@/interfaces/prediction";
+import { normalizeCityNames } from "utils/normalizeCityNames";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,10 +13,7 @@ export default async function handler(
     res.status(400);
   }
 
-  const normalizedInput = input
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .split(",")[0];
+  const normalizedInput = normalizeCityNames(input);
 
   const httpInstance = axios.create({});
 

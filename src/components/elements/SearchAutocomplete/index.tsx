@@ -6,6 +6,7 @@ import { useSearchSuggestions } from "@/services/querys/getSearchSuggestions";
 import { IPrediction } from "@/interfaces/prediction";
 import { useSearchForm } from "@/hooks/useSearchForm";
 import { useRouter } from "next/router";
+import { normalizeCityNames } from "utils/normalizeCityNames";
 
 const SearchAutocomplete = () => {
   const router = useRouter();
@@ -17,11 +18,7 @@ const SearchAutocomplete = () => {
   const { data: options } = useSearchSuggestions(searchInput, searchInput);
 
   const handleSetSearchInput = (value: string) => {
-    const cityName = value
-      .normalize("NFD")
-      .replace(/\p{Diacritic}/gu, "")
-      .split(",")[0]
-      .split("-")[0];
+    const cityName = normalizeCityNames(value);
 
     router.prefetch(`/${cityName}`);
 
