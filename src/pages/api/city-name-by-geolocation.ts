@@ -32,7 +32,7 @@ export default async function handler(
     .replace(/\p{Diacritic}/gu, "")
     .split(",")[0];
 
-  const response = normalizedCity.replaceAll(" ", "%20");
+  const response = encodeURIComponent(normalizedCity.trim());
 
   res.status(200).json(response);
 }
