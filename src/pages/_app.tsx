@@ -6,6 +6,7 @@ import { queryClient } from "@/services/querys/queryClient";
 import Layout from "@/components/layouts/DefaultLayout";
 import theme from "@/styles/theme";
 import Head from "next/head";
+import { BackdropProvider } from "@/hooks/useBackdrop";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -18,9 +19,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <ThemeProvider theme={theme}>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
+              <BackdropProvider>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </BackdropProvider>
             </ThemeProvider>
             <ReactQueryDevtools initialIsOpen={false} />
           </Hydrate>

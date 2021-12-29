@@ -1,9 +1,17 @@
+import { useBackdrop } from "@/hooks/useBackdrop";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Link from "next/link";
+import { useEffect } from "react";
 import * as S from "./styles";
 
 const Error404Page = () => {
+  const { setBackdropStatus } = useBackdrop();
+
+  useEffect(() => {
+    setBackdropStatus(false);
+  }, []);
+
   return (
     <Box
       display="flex"

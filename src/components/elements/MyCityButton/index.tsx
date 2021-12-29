@@ -3,9 +3,11 @@ import { useGeolocation } from "@/hooks/useGeolocation";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as S from "./styles";
+import { useBackdrop } from "@/hooks/useBackdrop";
 
 const MyCityButton = () => {
   const router = useRouter();
+  const { setBackdropStatus } = useBackdrop();
   const { latitude, longitude } = useGeolocation();
   const cityName = useCityNameByGeolocation(
     `cityNameFrom${latitude}${longitude}`,
@@ -21,6 +23,7 @@ const MyCityButton = () => {
   }, [cityName, router]);
 
   const handleClick = () => {
+    setBackdropStatus(true);
     router.push(`/${cityName}`);
   };
 

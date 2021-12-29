@@ -1,4 +1,5 @@
 import { MyCityButton, SearchAutocomplete } from "@/components/elements/";
+import { useBackdrop } from "@/hooks/useBackdrop";
 import { GeolocationProvider } from "@/hooks/useGeolocation";
 import { useSearchForm } from "@/hooks/useSearchForm";
 import { useRouter } from "next/router";
@@ -8,10 +9,13 @@ import * as S from "./styles";
 
 const SearchForm = () => {
   const router = useRouter();
+  const { setBackdropStatus } = useBackdrop();
   const { searchInput } = useSearchForm();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    setBackdropStatus(true);
 
     const cityName = normalizeCityNames(searchInput);
 
