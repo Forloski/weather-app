@@ -10,6 +10,7 @@ const HomePage = () => {
   return (
     <SearchFormProvider>
       <p>{time.date}</p>
+
       <Box pb={15}>
         <S.TitleTypography variant="h1">Weather</S.TitleTypography>
         <SearchForm />

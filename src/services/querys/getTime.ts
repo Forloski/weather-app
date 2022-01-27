@@ -16,8 +16,12 @@ export function useTime(
     "queryKey" | "queryFn"
   >,
   config?: AxiosRequestConfig
-): { date: string } | undefined {
-  const { data } = useQuery(queryKey, () => getTime(config), options);
+): { date: string } {
+  const { data = { date: "vazio" } } = useQuery(
+    queryKey,
+    () => getTime(config),
+    options
+  );
 
   return data;
 }
