@@ -1,7 +1,7 @@
 export const defaultQueryClientOptions = {
   queries: {
-    staleTime: 1000 * 60 * 2,
-    cacheTime: 1000 * 60 * 3,
+    staleTime: 0,
+    cacheTime: 0,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
