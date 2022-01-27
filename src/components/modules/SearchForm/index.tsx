@@ -4,7 +4,7 @@ import { GeolocationProvider } from "@/hooks/useGeolocation";
 import { useSearchForm } from "@/hooks/useSearchForm";
 import { useRouter } from "next/router";
 import { FormEvent } from "react";
-import { normalizeCityNames } from "utils/normalizeCityNames";
+import { normalizeCityNames } from "@/utils/normalizeCityNames";
 import * as S from "./styles";
 
 const SearchForm = () => {

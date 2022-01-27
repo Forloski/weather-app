@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import { normalizeCityNames } from "utils/normalizeCityNames";
+import { normalizeCityNames } from "@/utils/normalizeCityNames";
 
 export default async function handler(
   req: NextApiRequest,

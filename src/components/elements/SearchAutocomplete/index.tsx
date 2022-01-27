@@ -1,12 +1,12 @@
 import { Autocomplete, TextField } from "@mui/material";
 import { debounceTime, distinctUntilChanged, tap } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchSuggestions } from "@/services/querys/getSearchSuggestions";
 import { IPrediction } from "@/interfaces/prediction";
 import { useSearchForm } from "@/hooks/useSearchForm";
 import { useRouter } from "next/router";
-import { normalizeCityNames } from "utils/normalizeCityNames";
+import { normalizeCityNames } from "@/utils/normalizeCityNames";
 
 const SearchAutocomplete = () => {
   const router = useRouter();
@@ -25,13 +25,16 @@ const SearchAutocomplete = () => {
     setSearchInput(value);
   };
 
-  searchInput$
-    .pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
-      tap((e) => handleSetSearchInput(e))
-    )
-    .subscribe();
+  useEffect(() => {
+    searchInput$
+      .pipe(
+        tap(() => console.log("aaaa")),
+        debounceTime(500),
+        distinctUntilChanged(),
+        tap((e) => handleSetSearchInput(e))
+      )
+      .subscribe();
+  }, []);
 
   return (
     <Autocomplete
